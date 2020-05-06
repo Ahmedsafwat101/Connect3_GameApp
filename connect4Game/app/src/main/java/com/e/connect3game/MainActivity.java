@@ -21,17 +21,6 @@ public class MainActivity extends AppCompatActivity {
 
    // Colors  array will indicate each cell color in the board 0=yellow and 1=red
    int []Colors={-1,-1,-1,-1,-1,-1,-1,-1,-1};
-   int [][]winningPositions={
-                             {0,1,2},
-                             {3,4,5},
-                             {6,7,8},
-                             {0,3,6},
-                             {1,4,7},
-                             {2,5,8},
-                             {2,4,6},
-                             {0,4,8}
-
-   };
 
    public void Reset()  {
        ImageView reset=(ImageView)findViewById(R.id.imageView1);
@@ -151,11 +140,7 @@ public class MainActivity extends AppCompatActivity {
     }
    public void drop (View view) throws InterruptedException {
        ImageView counter=(ImageView)view;
-       if (counter.getDrawable() != null )
-       {
-           Toast.makeText(getBaseContext(), "Choose another Cell ;)", Toast.LENGTH_SHORT).show();
-       }
-       else if(counter.getDrawable() == null && endGame!=true)  {
+       if(counter.getDrawable() == null && endGame!=true)  {
            int tagValue=Integer.parseInt(counter.getTag().toString());
            counter.setTranslationY(-1000);
            if (playerActive == true) {
@@ -176,7 +161,10 @@ public class MainActivity extends AppCompatActivity {
            {
 
                LinearLayout linearlayout= (LinearLayout)findViewById(R.id.playAgainLayout);
+               linearlayout.setTranslationY(-3000);
                linearlayout.setVisibility(View.VISIBLE);
+               linearlayout.animate().translationYBy(3000f).setDuration(500);
+
 
                TextView message= (TextView)findViewById(R.id.textView);
                if(winnerNumber==0)
